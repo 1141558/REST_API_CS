@@ -12,5 +12,14 @@ namespace nucleocs.DTO
         public int? SupCatId { get; set; }
 
         public CategoryDTO(){}
+
+        public CategoryDTO(int categoryId, string name, int? supCatId){
+        this.Name = name;
+        this.CategoryId = categoryId;
+        }
+
+        public static CategoryDTO From(Category c){
+            return new CategoryDTO(c.CategoryId, c.Name, c.SuperCategoryId);
+        }
     }
 }

@@ -11,5 +11,15 @@ namespace nucleocs.DTO
         public string Name { get; set; }
 
         public FinishingDTO(){}
+
+        public FinishingDTO(string name, int finishingId){
+            this.Name = name;
+            this.FinishingId = finishingId;
+        }
+
+        public static FinishingDTO From(Finishing f) {
+        return new FinishingDTO(f.Name, f.FinishingId);
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace nucleocs.DTO
         public int MaterialId { get; set; }
         public Material Material { get; set; }
         public int FinishingId { get; set; }
-        public Finishing Finishing { get; set; }   
+        public Finishing Finishing { get; set; } 
         public MaterialFinishingDTO(){}
     }
 }

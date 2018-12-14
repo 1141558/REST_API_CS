@@ -8,10 +8,10 @@ namespace nucleocs.Data.Repositories.Interfaces
 {
     public interface ICategoryRepository
     {
-        CategoryDTO GetById(int id);
+        Category GetById(int id);
         List<CategoryDTO> GetAll();
         List<CategoryDTO> GetByName(string name);
-        CategoryDTO GetByNameSingle(string name);
+        Category GetByNameSingle(string name);
         void Create(Category category);
         void Update(Category category);
         void Delete(Category category);

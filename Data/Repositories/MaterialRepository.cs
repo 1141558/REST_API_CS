@@ -16,14 +16,12 @@ namespace nucleocs.Data.Repositories
         public MaterialRepository(NucleoContext dataContext) : base(dataContext){
              _context = dataContext;    
         }
-        public new MaterialDTO GetById(int id)
+        public new Material GetById(int id)
         {
-            var item = _context.Materials
+            return _context.Materials
                     .Include(f => f.MaterialFinishings)
                     .ThenInclude(mf => mf.Finishing)
                     .FirstOrDefault(x => x.MaterialId == id);
-
-            return MaterialDTO.From(item);
         }
 
          public new List<MaterialDTO> GetAll(){
@@ -43,12 +41,11 @@ namespace nucleocs.Data.Repositories
                     .ToList();
         }
 
-        public MaterialDTO GetByNameSingle(string name){
-            var item = _context.Materials
-            .Include(f => f.MaterialFinishings)
-            .FirstOrDefault<Material>(m => m.Name.Equals(name));
-
-          return MaterialDTO.From(item);
+        public Material GetByNameSingle(string name){
+            
+            return _context.Materials
+                .Include(f => f.MaterialFinishings)
+                .FirstOrDefault<Material>(m => m.Name.Equals(name));
         }
 
         public void Create(Material material){

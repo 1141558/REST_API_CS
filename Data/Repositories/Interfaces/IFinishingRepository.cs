@@ -8,10 +8,10 @@ namespace nucleocs.Data.Repositories.Interfaces
 {
     public interface IFinishingRepository
     {
-        FinishingDTO GetById(int id);
+        Finishing GetById(int id);
         List<FinishingDTO> GetAll();
         List<FinishingDTO> GetByName(string name);
-        FinishingDTO GetByNameSingle(string name);
+        Finishing GetByNameSingle(string name);
         void Create(Finishing finishing);
         void Update(Finishing finishing);
         void Delete(Finishing finishing);

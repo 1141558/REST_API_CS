@@ -16,10 +16,9 @@ namespace nucleocs.Data.Repositories
         public CategoryRepository(NucleoContext dataContext) : base(dataContext){
              _context = dataContext;    
         }
-        public new CategoryDTO GetById(int id)
+        public new Category GetById(int id)
         {
-            var item = _context.Categories.Find(id);
-            return CategoryDTO.From(item);
+            return _context.Categories.Find(id);
         }
 
          public new List<CategoryDTO> GetAll(){
@@ -36,10 +35,10 @@ namespace nucleocs.Data.Repositories
                 .ToList();
         }
 
-        public CategoryDTO GetByNameSingle(string name){
-            var item = _context.Categories
+        public Category GetByNameSingle(string name){
+
+            return _context.Categories
                 .SingleOrDefault(p => p.Name.Equals(name));
-            return CategoryDTO.From(item);
         }
 
         public void Create(Category category){

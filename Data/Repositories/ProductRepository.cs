@@ -17,9 +17,9 @@ namespace nucleocs.Data.Repositories
              _context = dataContext;    
         }
 
-        public new ProductDTO GetById(int id)
+        public new Product GetById(int id)
         {
-            var item = _context.Products
+            return _context.Products
                 .Include(ps => ps.ProdSon)
                 .ThenInclude(p => p.ProductS)
                 .Include(ps => ps.ProdSon)
@@ -30,8 +30,6 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .FirstOrDefault(x => x.ProductId == id);
-           
-           return ProductDTO.FromFull(item);
         }
 
         public List<ProductDTO> GetByName(string name)
@@ -50,12 +48,12 @@ namespace nucleocs.Data.Repositories
                 .Select(p => ProductDTO.FromFull(p))
                 .ToList();
                 
-                return item;
+            return item;
         }
 
-         public ProductDTO GetByNameSingle(string name)
+        public Product GetByNameSingle(string name)
         {
-            var item = _context.Products
+            return _context.Products
                 .Include(p => p.ProdSon)
                 .ThenInclude(ps => ps.ProductS)
                 .Include(p => p.ProdSon)
@@ -66,8 +64,6 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .FirstOrDefault(x => x.Name == name);
-            
-            return ProductDTO.FromFull(item);
         }
 
          public new List<ProductDTO> GetAll()

@@ -15,10 +15,9 @@ namespace nucleocs.Data.Repositories
         public FinishingRepository(NucleoContext dataContext) : base(dataContext){
              _context = dataContext;    
         }
-        public new FinishingDTO GetById(int id)
+        public new Finishing GetById(int id)
         {
-            var item = _context.Finishings.Find(id);
-            return FinishingDTO.From(item);
+            return _context.Finishings.Find(id);
         }
 
          public new List<FinishingDTO> GetAll(){
@@ -35,12 +34,10 @@ namespace nucleocs.Data.Repositories
                 .ToList();
         }
 
-        public FinishingDTO GetByNameSingle(string name){
+        public Finishing GetByNameSingle(string name){
 
-            var item = _context.Finishings
+            return _context.Finishings
                 .SingleOrDefault(p => p.Name.Equals(name));
-                
-            return FinishingDTO.From(item);
         }
 
         public void Create(Finishing finishing){

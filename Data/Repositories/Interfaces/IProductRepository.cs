@@ -8,10 +8,10 @@ namespace nucleocs.Data.Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        ProductDTO GetById(int id);
+        Product GetById(int id);
         List<ProductDTO> GetAll();
         List<ProductDTO> GetByName(string name);
-        ProductDTO GetByNameSingle(string name);
+        Product GetByNameSingle(string name);
         void Create(Product product);
         void Update(Product product);
         void Delete(Product product);

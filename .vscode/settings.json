@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ef7104c5-40b1-41b6-9f90-092921fd17db/resourceGroups/arqsi2018/providers/Microsoft.Web/sites/nucleocs",
+    "appService.deploySubpath": "bin\\Release\\netcoreapp2.1\\publish"
+}

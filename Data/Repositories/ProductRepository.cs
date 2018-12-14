@@ -17,9 +17,9 @@ namespace nucleocs.Data.Repositories
              _context = dataContext;    
         }
 
-        public new Product GetById(int id)
+        public new ProductDTO GetById(int id)
         {
-           return _context.Products
+            var item = _context.Products
                 .Include(ps => ps.ProdSon)
                 .ThenInclude(p => p.ProductS)
                 .Include(ps => ps.ProdSon)
@@ -30,9 +30,11 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .FirstOrDefault(x => x.ProductId == id);
+           
+           return ProductDTO.FromFull(item);
         }
 
-        public List<MVProduct> GetByName(string name)
+        public List<ProductDTO> GetByName(string name)
         {
             var item = _context.Products
                 .Include(p => p.ProdSon)
@@ -45,15 +47,15 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .Where(o => o.Name.Contains(name))
-                .Select(p => MVProduct.FromFull(p))
+                .Select(p => ProductDTO.FromFull(p))
                 .ToList();
                 
                 return item;
         }
 
-         public Product GetByNameSingle(string name)
+         public ProductDTO GetByNameSingle(string name)
         {
-            return _context.Products
+            var item = _context.Products
                 .Include(p => p.ProdSon)
                 .ThenInclude(ps => ps.ProductS)
                 .Include(p => p.ProdSon)
@@ -64,9 +66,11 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .FirstOrDefault(x => x.Name == name);
+            
+            return ProductDTO.FromFull(item);
         }
 
-         public new List<MVProduct> GetAll()
+         public new List<ProductDTO> GetAll()
         {
             return _context.Products
                 .Include(p => p.ProdSon)
@@ -78,7 +82,7 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(pm => pm.Material)
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)        
-                .Select(p => MVProduct.FromFull(p))
+                .Select(p => ProductDTO.FromFull(p))
                 .ToList();
         }
 

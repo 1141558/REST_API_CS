@@ -8,10 +8,10 @@ namespace nucleocs.Data.Repositories.Interfaces
 {
     public interface IMaterialRepository
     {
-        Material GetById(int id);
-        List<MVMaterial> GetAll();
-        List<MVMaterial> GetByName(string name);
-        Material GetByNameSingle(string name);
+        MaterialDTO GetById(int id);
+        List<MaterialDTO> GetAll();
+        List<MaterialDTO> GetByName(string name);
+        MaterialDTO GetByNameSingle(string name);
         void Create(Material material);
         void Update(Material material);
         void Delete(Material material);

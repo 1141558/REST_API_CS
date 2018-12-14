@@ -16,35 +16,39 @@ namespace nucleocs.Data.Repositories
         public MaterialRepository(NucleoContext dataContext) : base(dataContext){
              _context = dataContext;    
         }
-        public new Material GetById(int id)
+        public new MaterialDTO GetById(int id)
         {
-            return _context.Materials
+            var item = _context.Materials
                     .Include(f => f.MaterialFinishings)
                     .ThenInclude(mf => mf.Finishing)
                     .FirstOrDefault(x => x.MaterialId == id);
+
+            return MaterialDTO.From(item);
         }
 
-         public new List<MVMaterial> GetAll(){
+         public new List<MaterialDTO> GetAll(){
             return _context.Materials
                 .Include(f => f.MaterialFinishings)
                 .ThenInclude(mf => mf.Finishing)
-                .Select(m => MVMaterial.From(m))
+                .Select(m => MaterialDTO.From(m))
                 .ToList();
         }
 
-        public List<MVMaterial> GetByName(string name){
+        public List<MaterialDTO> GetByName(string name){
            return _context.Materials
                     .Include(f => f.MaterialFinishings)
                     .ThenInclude(mf => mf.Finishing)
                     .Where(o => o.Name.Contains(name))
-                    .Select(m => MVMaterial.From(m))
+                    .Select(m => MaterialDTO.From(m))
                     .ToList();
         }
 
-        public Material GetByNameSingle(string name){
-          return _context.Materials
+        public MaterialDTO GetByNameSingle(string name){
+            var item = _context.Materials
             .Include(f => f.MaterialFinishings)
             .FirstOrDefault<Material>(m => m.Name.Equals(name));
+
+          return MaterialDTO.From(item);
         }
 
         public void Create(Material material){

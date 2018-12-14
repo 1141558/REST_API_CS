@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using nucleocs.Data;
 using nucleocs.Data.Repositories.Interfaces;
+using nucleocs.DTO;
 using nucleocs.Models;
 using nucleocs.MVDTO;
 
@@ -14,29 +15,32 @@ namespace nucleocs.Data.Repositories
         public FinishingRepository(NucleoContext dataContext) : base(dataContext){
              _context = dataContext;    
         }
-        public new Finishing GetById(int id)
+        public new FinishingDTO GetById(int id)
         {
-            return _context.Finishings.Find(id);
+            var item = _context.Finishings.Find(id);
+            return FinishingDTO.From(item);
         }
 
-         public new List<MVFinishing> GetAll(){
+         public new List<FinishingDTO> GetAll(){
             return _context.Finishings
-                .Select(f => MVFinishing.From(f))
+                .Select(f => FinishingDTO.From(f))
                 .ToList();
         }
 
-        public List<MVFinishing> GetByName(string name){
+        public List<FinishingDTO> GetByName(string name){
 
             return _context.Finishings
                 .Where(o => o.Name.Contains(name))
-                .Select(m => MVFinishing.From(m))
+                .Select(m => FinishingDTO.From(m))
                 .ToList();
         }
 
-        public Finishing GetByNameSingle(string name){
+        public FinishingDTO GetByNameSingle(string name){
 
-            return _context.Finishings
+            var item = _context.Finishings
                 .SingleOrDefault(p => p.Name.Equals(name));
+                
+            return FinishingDTO.From(item);
         }
 
         public void Create(Finishing finishing){

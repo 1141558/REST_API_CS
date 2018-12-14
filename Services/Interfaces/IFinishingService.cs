@@ -5,12 +5,12 @@ using nucleocs.MVDTO;
 
 namespace nucleocs.Services.Interfaces{
     public interface IFinishingService{
-        Finishing GetFinishingByID(int id);
-        List<MVFinishing> GetAllFinishings();
-        List<MVFinishing> GetFinishingByName(string name);
-        Finishing GetFinishingByNameSingle(string name);
-        Finishing CreateFinishing(FinishingDTO finishingDTO);
-        Finishing UpdateFinishing(FinishingDTO finishingDTO);
+        FinishingDTO GetFinishingByID(int id);
+        List<FinishingDTO> GetAllFinishings();
+        List<FinishingDTO> GetFinishingByName(string name);
+        FinishingDTO GetFinishingByNameSingle(string name);
+        FinishingDTO CreateFinishing(FinishingDTO finishingDTO);
+        FinishingDTO UpdateFinishing(FinishingDTO finishingDTO);
         bool DeleteFinishing(FinishingDTO finishingDTO);
     }
 }

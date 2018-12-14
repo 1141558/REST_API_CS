@@ -18,23 +18,26 @@ namespace nucleocs.Services{
             _repository = repository;
         }
 
-        public Category GetCategoryByID(int id){
+        public CategoryDTO GetCategoryByID(int id){
+            var item = _repository.GetById(id);
 
-            return _repository.GetById(id);
+            return CategoryDTO.From(item);
         }
 
-        public List<MVCategory> GetAllCategories(){
+        public List<CategoryDTO> GetAllCategories(){
 
             return _repository.GetAll();
         }
 
-        public List<MVCategory> GetCategoryByName(string name){
+        public List<CategoryDTO> GetCategoryByName(string name){
 
             return _repository.GetByName(name);
         }
 
-        public Category GetCategoryByNameSingle(string name){
-             return _repository.GetByNameSingle(name);
+        public CategoryDTO GetCategoryByNameSingle(string name){
+            var item = _repository.GetByNameSingle(name);
+            
+            return CategoryDTO.From(item);
         }
 
         public Category CreateCategory(CategoryDTO categoryDTO){

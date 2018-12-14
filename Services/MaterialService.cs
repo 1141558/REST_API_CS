@@ -20,7 +20,7 @@ namespace nucleocs.Services{
             _repositoryFinishing = repositoryFinishing;
         }
 
-        public Material GetMaterialByID(int id){
+        public MaterialDTO GetMaterialByID(int id){
 
             var item = _repositoryMaterial.GetById(id);
 
@@ -28,25 +28,26 @@ namespace nucleocs.Services{
             {
                 return null;
             }else{
-                return item;
+                return MaterialDTO.From(item);
             }
         }
 
-        public List<MVMaterial> GetAllMaterials(){
+        public List<MaterialDTO> GetAllMaterials(){
            return _repositoryMaterial.GetAll();
         }
 
-        public List<MVMaterial> GetMateriaByName(string name){
+        public List<MaterialDTO> GetMateriaByName(string name){
 
            return _repositoryMaterial.GetByName(name);
         }
 
-         public Material GetMateriaByNameSingle(string name){
-
-           return _repositoryMaterial.GetByNameSingle(name);
+         public MaterialDTO GetMateriaByNameSingle(string name){
+            var item = _repositoryMaterial.GetByNameSingle(name);
+            
+           return MaterialDTO.From(item);
         }
 
-        public Material CreateMaterial(MaterialDTO materialDTO){
+        public MaterialDTO CreateMaterial(MaterialDTO materialDTO){
             
             var mtl = new Material();
 
@@ -75,13 +76,13 @@ namespace nucleocs.Services{
                 mtl.MaterialFinishings = icolMatF;
                 _repositoryMaterial.Create(mtl);
 
-                return mtl;
+                return MaterialDTO.From(mtl);
             }else{
                 return null;
             }
         }
 
-        public Material UpdateMaterial(MaterialDTO materialDTO){
+        public MaterialDTO UpdateMaterial(MaterialDTO materialDTO){
             var item = _repositoryMaterial.GetById(materialDTO.MaterialId);
 
             if (item == null)
@@ -123,7 +124,7 @@ namespace nucleocs.Services{
             item.MaterialFinishings = icolMatF;
             _repositoryMaterial.Update(item);
             
-            return item;
+            return MaterialDTO.From(item);
         }
 
         public bool DeleteMaterial(MaterialDTO materialDTO){

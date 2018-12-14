@@ -5,12 +5,12 @@ using nucleocs.MVDTO;
 
 namespace nucleocs.Services.Interfaces{
     public interface IMaterialService{
-        Material GetMaterialByID(int id);
-        List<MVMaterial> GetAllMaterials();
-        List<MVMaterial> GetMateriaByName(string name);
-        Material GetMateriaByNameSingle(string name);
-        Material CreateMaterial(MaterialDTO materialDTO);
-        Material UpdateMaterial(MaterialDTO materialDTO);
-         bool DeleteMaterial(MaterialDTO materialDTO);
+        MaterialDTO GetMaterialByID(int id);
+        List<MaterialDTO> GetAllMaterials();
+        List<MaterialDTO> GetMateriaByName(string name);
+        MaterialDTO GetMateriaByNameSingle(string name);
+        MaterialDTO CreateMaterial(MaterialDTO materialDTO);
+        MaterialDTO UpdateMaterial(MaterialDTO materialDTO);
+        bool DeleteMaterial(MaterialDTO materialDTO);
     }
 }

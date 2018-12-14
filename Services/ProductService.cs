@@ -29,31 +29,33 @@ namespace nucleocs.Services{
 
         }
 
-        public List<MVProduct> GetAllProducts(){
+        public List<ProductDTO> GetAllProducts(){
             return _repositoryProduct.GetAll();
         }
 
-        public Product GetProductByID(int id){
+        public ProductDTO GetProductByID(int id){
+            var item = _repositoryProduct.GetById(id);
 
-            return _repositoryProduct.GetById(id);
+            return ProductDTO.FromFull(item);
         }
 
-        public List<MVProduct> GetProductByName(string name){
+        public List<ProductDTO> GetProductByName(string name){
 
             return  _repositoryProduct.GetByName(name);
         }
 
-        public Product GetProductByNameSingle(string name){
+        public ProductDTO GetProductByNameSingle(string name){
+            var item = _repositoryProduct.GetByNameSingle(name);
 
-            return  _repositoryProduct.GetByNameSingle(name);
+            return ProductDTO.FromFull(item); 
         }
-
+        /* 
         public Product GetProductParts(ProductDTO prod){
 
             return _repositoryProduct.GetById(prod.ProductId);
         }
-
-        public Product CreateLitleProduct(ProductDTO product){
+        */
+        public ProductDTO CreateLitleProduct(ProductDTO product){
             var prod = new Product();
             var item = _repositoryProduct.GetByNameSingle(product.Name); //Verifica se já existe algum produto com o nome passado por parametro
 
@@ -75,10 +77,10 @@ namespace nucleocs.Services{
             }else{
                 return null;
             }         
-            return prod;
+            return ProductDTO.FromFull(prod);
         }
 
-        public Product CreateFullProduct(ProductDTO product){
+        public ProductDTO CreateFullProduct(ProductDTO product){
             var prod = new Product();
             var item = _repositoryProduct.GetByNameSingle(product.Name); //Verifica se já existe algum produto com o nome passado por parametro
             
@@ -182,11 +184,11 @@ namespace nucleocs.Services{
             }else{
                 return null;//mensagem erro de produto com o mesmo nome já existe
             }         
-            return prod;
+            return ProductDTO.FromFull(prod);
     
         }
 
-        public Product UpdateProduct(ProductDTO product){
+        public ProductDTO UpdateProduct(ProductDTO product){
            
             var prod = _repositoryProduct.GetById(product.ProductId);
 
@@ -298,7 +300,7 @@ namespace nucleocs.Services{
                     prod.ProdSon = listSubProd;
                     _repositoryProduct.Update(prod);
                     
-                    return prod;
+                    return ProductDTO.FromFull(prod);
                     
                 }
             }else{
@@ -321,6 +323,5 @@ namespace nucleocs.Services{
             }
             
         }
-
     }
 }

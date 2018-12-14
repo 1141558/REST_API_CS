@@ -17,26 +17,28 @@ namespace nucleocs.Services{
             _repository = repository;
         }
 
-        public Finishing GetFinishingByID(int id){
+        public FinishingDTO GetFinishingByID(int id){
+            var item = _repository.GetById(id);
 
-            return _repository.GetById(id);
+            return FinishingDTO.From(item);
         }
 
-        public List<MVFinishing> GetAllFinishings(){
+        public List<FinishingDTO> GetAllFinishings(){
             return _repository.GetAll();
         }
 
-        public List<MVFinishing> GetFinishingByName(string name){
+        public List<FinishingDTO> GetFinishingByName(string name){
 
             return _repository.GetByName(name);
         }
 
-        public Finishing GetFinishingByNameSingle(string name){
+        public FinishingDTO GetFinishingByNameSingle(string name){
+            var item = _repository.GetByNameSingle(name);
 
-            return _repository.GetByNameSingle(name);
+            return FinishingDTO.From(item);
         }
 
-        public Finishing CreateFinishing(FinishingDTO finishingDTO){
+        public FinishingDTO CreateFinishing(FinishingDTO finishingDTO){
             var fn = new Finishing();
             var item = _repository.GetByNameSingle(finishingDTO.Name);
                             
@@ -48,14 +50,14 @@ namespace nucleocs.Services{
                 }                
                 _repository.Create(fn);
 
-                return fn;
+                return FinishingDTO.From(fn);
             }else{
                 return null;
             }
 
         }
 
-        public Finishing UpdateFinishing(FinishingDTO finishingDTO){
+        public FinishingDTO UpdateFinishing(FinishingDTO finishingDTO){
             var finishing = _repository.GetById(finishingDTO.FinishingId);
 
             if (finishing == null)
@@ -69,7 +71,7 @@ namespace nucleocs.Services{
                 } 
                 _repository.Update(finishing);
                 
-                return finishing;
+                return FinishingDTO.From(finishing);
             }
             
         }
@@ -88,7 +90,6 @@ namespace nucleocs.Services{
             }
             
         }
-
     }
     
 }

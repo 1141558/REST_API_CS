@@ -55,9 +55,9 @@ namespace nucleocs.MVDTO{
             var category = MVCategory.From(p.CategoryD);
             var productsSon = new List<MVAggregation>();
 
-            foreach(var mt in p.ProductMaterials){
+            foreach(var mt in p.MaterialD){
 
-                material.Add(MVMaterial.From(mt.MaterialD));
+                material.Add(MVMaterial.From(mt));
             }
 
             foreach (var agg in p.ProductsSon)

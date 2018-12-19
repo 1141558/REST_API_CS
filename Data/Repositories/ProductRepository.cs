@@ -17,7 +17,7 @@ namespace nucleocs.Data.Repositories
              _context = dataContext;    
         }
 
-        public new ProductDTO GetById(int id)
+        public new Product GetById(int id)
         {
             var item =  _context.Products
                 .Include(ps => ps.ProdSon)
@@ -30,7 +30,7 @@ namespace nucleocs.Data.Repositories
                 .ThenInclude(mf => mf.MaterialFinishings)
                 .ThenInclude(f => f.Finishing)
                 .FirstOrDefault(x => x.ProductId == id);
-            return ProductDTO.FromFull(item);
+            return item;
         }
 
         public List<ProductDTO> GetByName(string name)

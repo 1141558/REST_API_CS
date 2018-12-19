@@ -41,7 +41,7 @@ namespace Controllers
         }
 
         [HttpGet("{name}", Name = "GetFinishingNome")]
-        public ActionResult<MVFinishing> GetFinishingNome(string name)
+        public ActionResult<FinishingDTO> GetFinishingName(string name)
         {
             var item =  _service.GetFinishingByName(name);
 

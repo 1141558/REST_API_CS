@@ -36,14 +36,14 @@ namespace Controllers
 
         //Get all materials
         [HttpGet(Name = "GetAllMaterials")] 
-        public ActionResult<List<MVMaterial>> GetAll()
+        public ActionResult<List<MaterialDTO>> GetAll()
         {
             return Ok(_service.GetAllMaterials());
         }
 
         //GET Material por nome
         [HttpGet("{name}", Name = "GetMaterialNome")]
-        public ActionResult<MVMaterial> GetMaterialByNome(string name)
+        public ActionResult<List<MaterialDTO>> GetMaterialByName(string name)
         {
             var item = _service.GetMateriaByName(name);
 

@@ -23,14 +23,14 @@ namespace Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetCategoryByID")]
-        public ActionResult<CategoryDTO> GetCategoryByID(int id) {
+        public ActionResult<MVCategory> GetCategoryByID(int id) {
             
             CategoryDTO category =  _service.GetCategoryByID(id);
 
             if(category == null){
                 return NotFound();
             }else{
-                return Ok(category);
+                return Ok(MVCategory.From(category));
             }
 
         }
@@ -43,7 +43,7 @@ namespace Controllers
 
         //GET Category por nome
         [HttpGet("{name}", Name = "GetCategoryNome")]
-        public ActionResult<List<MVCategory>> GetCategoryByNome(string name)
+        public ActionResult<List<MVCategory>> GetCategoryByName(string name)
         {
             var item =  _service.GetCategoryByName(name);
 

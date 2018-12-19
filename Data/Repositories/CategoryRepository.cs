@@ -18,7 +18,8 @@ namespace nucleocs.Data.Repositories
         }
         public new Category GetById(int id)
         {
-            return _context.Categories.Find(id);
+            var item = _context.Categories.Find(id);
+            return item;
         }
 
          public new List<CategoryDTO> GetAll(){
@@ -36,9 +37,9 @@ namespace nucleocs.Data.Repositories
         }
 
         public Category GetByNameSingle(string name){
-
-            return _context.Categories
+            var item = _context.Categories
                 .SingleOrDefault(p => p.Name.Equals(name));
+            return item;
         }
 
         public void Create(Category category){

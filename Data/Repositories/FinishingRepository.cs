@@ -17,7 +17,8 @@ namespace nucleocs.Data.Repositories
         }
         public new Finishing GetById(int id)
         {
-            return _context.Finishings.Find(id);
+            var item = _context.Finishings.Find(id);
+            return item;
         }
 
          public new List<FinishingDTO> GetAll(){
@@ -36,8 +37,9 @@ namespace nucleocs.Data.Repositories
 
         public Finishing GetByNameSingle(string name){
 
-            return _context.Finishings
+            var item = _context.Finishings
                 .SingleOrDefault(p => p.Name.Equals(name));
+            return item;
         }
 
         public void Create(Finishing finishing){

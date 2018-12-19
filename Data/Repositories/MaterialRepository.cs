@@ -18,10 +18,11 @@ namespace nucleocs.Data.Repositories
         }
         public new Material GetById(int id)
         {
-            return _context.Materials
+            var item = _context.Materials
                     .Include(f => f.MaterialFinishings)
                     .ThenInclude(mf => mf.Finishing)
                     .FirstOrDefault(x => x.MaterialId == id);
+            return item;
         }
 
          public new List<MaterialDTO> GetAll(){
@@ -43,9 +44,10 @@ namespace nucleocs.Data.Repositories
 
         public Material GetByNameSingle(string name){
             
-            return _context.Materials
+            var item = _context.Materials
                 .Include(f => f.MaterialFinishings)
                 .FirstOrDefault<Material>(m => m.Name.Equals(name));
+            return item;
         }
 
         public void Create(Material material){

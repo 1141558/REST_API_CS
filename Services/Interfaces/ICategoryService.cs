@@ -10,8 +10,8 @@ namespace nucleocs.Services.Interfaces{
         List<CategoryDTO> GetAllCategories();
         List<CategoryDTO> GetCategoryByName(string name);
         CategoryDTO GetCategoryByNameSingle(string name);
-        Category CreateCategory(CategoryDTO categoryDTO);
-        Category UpdateCategory(CategoryDTO categoryDTO);
+        CategoryDTO CreateCategory(CategoryDTO categoryDTO);
+        CategoryDTO UpdateCategory(CategoryDTO categoryDTO);
         bool DeleteCategory(CategoryDTO categoryDTO);
     }
 }

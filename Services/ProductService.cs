@@ -133,11 +133,11 @@ namespace nucleocs.Services{
                 
                 //distinguir os produtos compostos dos produtos simples
 
-                if(product.SubProducts.Count == 0){
+                if(product.ProductsSon.Count == 0){
                     _repositoryProduct.Create(prod);
                 }else{
                     ICollection<Aggregation> listSubProd = new List<Aggregation>();                               
-                    foreach(AggregationDTO aggDTO in product.SubProducts){//preencher os subprodutos
+                    foreach(AggregationDTO aggDTO in product.ProductsSon){//preencher os subprodutos
                         Aggregation agg = new Aggregation();
 
                         //procura pelo id do produto na base de dados
@@ -252,11 +252,11 @@ namespace nucleocs.Services{
                 
                 //distinguir os produtos compostos dos produtos simples
 
-                if(product.SubProducts.Count == 0){
+                if(product.ProductsSon.Count == 0){
                     _repositoryProduct.Update(prod);
                 }else{
                     ICollection<Aggregation> listSubProd = new List<Aggregation>();                               
-                    foreach(AggregationDTO aggDTO in product.SubProducts){//preencher os subprodutos
+                    foreach(AggregationDTO aggDTO in product.ProductsSon){//preencher os subprodutos
                         Aggregation agg = new Aggregation();
 
                         //procura pelo id do produto na base de dados

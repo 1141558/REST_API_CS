@@ -40,7 +40,7 @@ namespace nucleocs.Services{
             return CategoryDTO.From(item);
         }
 
-        public Category CreateCategory(CategoryDTO categoryDTO){
+        public CategoryDTO CreateCategory(CategoryDTO categoryDTO){
             var ctg = new Category();
             var item = _repository.GetByNameSingle(categoryDTO.Name);
 
@@ -57,7 +57,7 @@ namespace nucleocs.Services{
                     ctg.SuperCategoryId = categoryDTO.SupCatId;
                     _repository.Create(ctg);
 
-                    return ctg;
+                    return CategoryDTO.From(ctg);
                 }
                 return null;
             }else{
@@ -66,7 +66,7 @@ namespace nucleocs.Services{
 
         }
 
-        public Category UpdateCategory(CategoryDTO categoryDTO){
+        public CategoryDTO UpdateCategory(CategoryDTO categoryDTO){
             var category = _repository.GetById(categoryDTO.CategoryId);
             var suCatId = GetCategoryByID((categoryDTO.SupCatId).Value);
 
@@ -83,7 +83,7 @@ namespace nucleocs.Services{
                     category.SuperCategoryId = categoryDTO.SupCatId;
                     _repository.Update(category);
 
-                    return category;
+                    return CategoryDTO.From(category);
                 }
                 return null;
             }

@@ -12,6 +12,7 @@ namespace nucleocs.DTO
         public bool Required { get; set; }
         public ICollection<int> Restrictions { get; set; }
         public ICollection<EObjectToAlgoritm> RestrictionsDTO { get; set; }
+        public virtual ICollection<RestrictionDTO> RestrictionsC { get; set; }
         public int Quantity { get; set; }
         public double Max { get; set; }
         public double Min { get; set; }

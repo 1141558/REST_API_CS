@@ -21,9 +21,9 @@ namespace nucleocs.DTO
         public CategoryDTO CategoryD { get; set; }
         public ICollection<Material> Materials { get; set; }
         public ICollection<MaterialDTO> MaterialD { get; set; }
-        public ICollection<AggregationDTO> SubProducts { get; set; }
+        public ICollection<AggregationDTO> ProductsSon { get; set; }
         public List<int> RestrictionsIds { get; set; }
-        public virtual ICollection<ProductMaterial> ProductMaterials { get; set; }
+        public virtual ICollection<ProductMaterialDTO> ProductMaterials { get; set; }
 
         public ProductDTO(){}
         public ProductDTO(int productId, string name, CategoryDTO category){
@@ -34,7 +34,7 @@ namespace nucleocs.DTO
 
         public ProductDTO(int productId, string name, double widthMin, double widthMax, double heightMin, double heightMax, 
             double depthMin, double depthMax, double weight, double price, IEnumTypeProd dimensionType, CategoryDTO categoryDTO, 
-            ICollection<MaterialDTO> materialDTO, ICollection<AggregationDTO> subProductsDTO){
+            ICollection<MaterialDTO> materialDTO, ICollection<AggregationDTO> productsSonDTO){
 
              this.ProductId = productId;
              this.Name = name;
@@ -49,7 +49,7 @@ namespace nucleocs.DTO
              this.DimensionType = dimensionType;
              this.CategoryD = categoryDTO;
              this.MaterialD = new List<MaterialDTO>(materialDTO);
-             this.SubProducts = new List<AggregationDTO>(subProductsDTO);
+             this.ProductsSon = new List<AggregationDTO>(productsSonDTO);
         }
 
         public static ProductDTO FromFull(Product p){
@@ -71,12 +71,5 @@ namespace nucleocs.DTO
             return new ProductDTO(p.ProductId, p.Name, p.WidthMin, p.WidthMax, p.HeightMin, p.HeightMax, p.DepthMin, p.DepthMax, 
                 p.Weight, p.Price, p.DimensionType, category, material, productSons);
         }
-
-        public static ProductDTO FromLitle(Product p){
-            var category = CategoryDTO.From(p.Category);
-
-            return new ProductDTO(p.ProductId, p.Name, category);    
-        }
-
     }
 }

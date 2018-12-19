@@ -14,8 +14,9 @@ namespace nucleocs.DTO
         public CategoryDTO(){}
 
         public CategoryDTO(int categoryId, string name, int? supCatId){
-        this.Name = name;
-        this.CategoryId = categoryId;
+            this.Name = name;
+            this.CategoryId = categoryId;
+            this.SupCatId = supCatId;
         }
 
         public static CategoryDTO From(Category c){

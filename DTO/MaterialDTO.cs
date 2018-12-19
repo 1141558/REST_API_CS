@@ -11,6 +11,7 @@ namespace nucleocs.DTO
         public string Name { get; set; }
         public List<int> FinishingId { get; set; }
         public ICollection<Finishing> Finishings { get; set; }
+        public virtual ICollection<MaterialFinishingDTO> MaterialFinishingsDTO { get; set; }
         public ICollection<FinishingDTO> FinishingsDTO { get; set; }
         
         public MaterialDTO(){}

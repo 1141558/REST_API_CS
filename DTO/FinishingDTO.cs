@@ -18,7 +18,7 @@ namespace nucleocs.DTO
         }
 
         public static FinishingDTO From(Finishing f) {
-        return new FinishingDTO(f.Name, f.FinishingId);
+            return new FinishingDTO(f.Name, f.FinishingId);
         }
 
     }

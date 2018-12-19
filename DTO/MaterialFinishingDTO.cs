@@ -9,8 +9,10 @@ namespace nucleocs.DTO
     public class MaterialFinishingDTO{
         public int MaterialId { get; set; }
         public Material Material { get; set; }
+        public MaterialDTO MaterialD { get; set; }
         public int FinishingId { get; set; }
-        public Finishing Finishing { get; set; } 
+        public Finishing Finishing { get; set; }
+        public FinishingDTO FinishingD { get; set; } 
         public MaterialFinishingDTO(){}
     }
 }

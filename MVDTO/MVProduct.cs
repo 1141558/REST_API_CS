@@ -19,8 +19,8 @@ namespace nucleocs.MVDTO{
         public double Price { get; set; }
         public IEnumTypeProd DimensionType { get; set; }
         public MVCategory Category { get; set; }
-        public ICollection<MVMaterial> Material { get; set; }
-        public ICollection<MVAggregation> SubProducts { get; set; }
+        public ICollection<MVMaterial> MvMaterial { get; set; }
+        public ICollection<MVAggregation> MVProductsSon { get; set; }
 
         public MVProduct(){}
 
@@ -31,8 +31,8 @@ namespace nucleocs.MVDTO{
         }
 
         public MVProduct(int productId, string name, double widthMin, double widthMax, double heightMin, double heightMax, 
-            double depthMin, double depthMax, double weight, double price, IEnumTypeProd dimensionType, MVCategory category, 
-            ICollection<MVMaterial> material, ICollection<MVAggregation> subProducts){
+            double depthMin, double depthMax, double weight, double price, IEnumTypeProd dimensionType, MVCategory categoryMV, 
+            ICollection<MVMaterial> materialMV, ICollection<MVAggregation> productsSonMV){
 
              this.ProductId = productId;
              this.Name = name;
@@ -45,33 +45,33 @@ namespace nucleocs.MVDTO{
              this.Weight = weight;
              this.Price = price;
              this.DimensionType = dimensionType;
-             this.Category = category;
-             this.Material = new List<MVMaterial>(material);
-             this.SubProducts = new List<MVAggregation>(subProducts);
+             this.Category = categoryMV;
+             this.MvMaterial = new List<MVMaterial>(materialMV);
+             this.MVProductsSon = new List<MVAggregation>(productsSonMV);
         }
 
-        public static MVProduct FromFull(Product p){
+        public static MVProduct FromFull(ProductDTO p){
             var material = new List<MVMaterial>();
-            var category = MVCategory.From(p.Category);
-            var productSons = new List<MVAggregation>();
+            var category = MVCategory.From(p.CategoryD);
+            var productsSon = new List<MVAggregation>();
 
             foreach(var mt in p.ProductMaterials){
 
-                material.Add(MVMaterial.From(mt.Material));
+                material.Add(MVMaterial.From(mt.MaterialD));
             }
 
-            foreach (var agg in p.ProdSon)
+            foreach (var agg in p.ProductsSon)
             {   
-                if(agg.Restrictions.Count != 0)
-                    productSons.Add(MVAggregation.From(agg));
+                if(agg.RestrictionsDTO.Count != 0)
+                    productsSon.Add(MVAggregation.From(agg));
             }
 
             return new MVProduct(p.ProductId, p.Name, p.WidthMin, p.WidthMax, p.HeightMin, p.HeightMax, p.DepthMin, p.DepthMax, 
-                p.Weight, p.Price, p.DimensionType, category, material, productSons);
+                p.Weight, p.Price, p.DimensionType, category, material, productsSon);
         }
 
-        public static MVProduct FromLitle(Product p){
-            var category = MVCategory.From(p.Category);
+        public static MVProduct FromLitle(ProductDTO p){
+            var category = MVCategory.From(p.CategoryD);
 
             return new MVProduct(p.ProductId, p.Name, category);    
         }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using nucleocs.DTO;
 using nucleocs.Models;
 
 namespace nucleocs.MVDTO{
@@ -16,7 +17,7 @@ namespace nucleocs.MVDTO{
 
         public MVFinishing(){}
 
-        public static MVFinishing From(Finishing f) {
+        public static MVFinishing From(FinishingDTO f) {
             return new MVFinishing(f.Name, f.FinishingId);
         }
     }

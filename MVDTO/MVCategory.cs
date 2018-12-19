@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using nucleocs.DTO;
 using nucleocs.Models;
 
 namespace nucleocs.MVDTO{
@@ -23,8 +24,8 @@ namespace nucleocs.MVDTO{
             this.CategoryId = categoryId;
         }
 
-        public static MVCategory From(Category c){
-            return new MVCategory(c.CategoryId, c.Name, c.SuperCategoryId);
+        public static MVCategory From(CategoryDTO c){
+            return new MVCategory(c.CategoryId, c.Name, c.SupCatId);
         }
     }
 }

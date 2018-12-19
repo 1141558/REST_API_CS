@@ -9,14 +9,13 @@ namespace nucleocs.MVDTO{
     public class MVMaterial{
         public int MaterialId  { get; set; }
         public string Name { get; set; }
-        public ICollection<FinishingDTO> Finishings { get; set; }
-        public ICollection<MVFinishing> MVFinishings { get; set; }
+        public ICollection<MVFinishing> finishings { get; set; }
         public MVMaterial(){}
 
-        public MVMaterial (int materialId, string name, ICollection<MVFinishing> finishingsMV){
+        public MVMaterial (int materialId, string name, ICollection<MVFinishing> finishings){
             this.MaterialId = materialId;
             this.Name = name;
-            this.MVFinishings = new List<MVFinishing>(finishingsMV);
+            this.finishings = new List<MVFinishing>(finishings);
         }
 
         public MVMaterial (int materialId, string name){
@@ -27,9 +26,9 @@ namespace nucleocs.MVDTO{
         public static MVMaterial From(MaterialDTO m) {
             var finishings = new List<MVFinishing>();
             
-            foreach(var mf in m.MaterialFinishingsDTO) {
+            foreach(var mf in m.FinishingsDTO) {
                 
-                finishings.Add(MVFinishing.From(mf.FinishingD));
+                finishings.Add(MVFinishing.From(mf));
             }
 
             return new MVMaterial(m.MaterialId, m.Name, finishings);

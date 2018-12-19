@@ -29,7 +29,7 @@ namespace Controllers
 
         //return all
         [HttpGet(Name = "GetAllProducts")]
-        public ActionResult<List<MVProduct>> GetAllProducts()
+        public ActionResult<List<ProductDTO>> GetAllProducts()
         {
             return Ok(_service.GetAllProducts());
         }
@@ -50,7 +50,7 @@ namespace Controllers
 
         //GET: api/Product/{name}
         [HttpGet("{name}", Name = "GetProductByName")]
-        public ActionResult<List<MVProduct>> GetProductByName(string name)
+        public ActionResult<List<ProductDTO>> GetProductByName(string name)
         {
             var item = _service.GetProductByName(name);
 

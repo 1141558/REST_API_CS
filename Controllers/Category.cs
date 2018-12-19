@@ -23,20 +23,20 @@ namespace Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetCategoryByID")]
-        public ActionResult<MVCategory> GetCategoryByID(int id) {
+        public ActionResult<CategoryDTO> GetCategoryByID(int id) {
             
-            Category category =  _service.GetCategoryByID(id);
+            CategoryDTO category =  _service.GetCategoryByID(id);
 
             if(category == null){
                 return NotFound();
             }else{
-                return Ok(MVCategory.From(category));
+                return Ok(category);
             }
 
         }
 
         [HttpGet(Name = "GetAllCategories")]
-        public ActionResult<List<MVCategory>> GetAll()
+        public ActionResult<List<CategoryDTO>> GetAll()
         {   
             return  Ok(_service.GetAllCategories());
         }
@@ -71,13 +71,13 @@ namespace Controllers
         [HttpPut(Name = "UpdateCategory")]
         public IActionResult UpdateCategory(CategoryDTO category)
         {
-            var todo =  _service.UpdateCategory(category);
+            var item =  _service.UpdateCategory(category);
 
-            if (todo == null)
+            if (item == null)
             {
                 return BadRequest();
             }else{
-                return Ok(MVCategory.From(todo));
+                return Ok(MVCategory.From(item));
             }
             
         }

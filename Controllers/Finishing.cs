@@ -23,7 +23,7 @@ namespace Controllers
         }
 
         [HttpGet(Name = "GetAllFinishings")] 
-        public ActionResult<List<MVFinishing>> GetAll()
+        public ActionResult<List<FinishingDTO>> GetAll()
         {
             return  Ok(_service.GetAllFinishings());
         }
